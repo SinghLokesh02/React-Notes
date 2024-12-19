@@ -1,0 +1,25 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 0px 20px;
+}
+li a{
+    text-decoration: none;
+    color: white;
+}
+ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+li{
+    list-style: none;
+    font-weight: bold;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+ 
