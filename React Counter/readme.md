@@ -3,9 +3,9 @@
 ## Project Overview
 The **React Counter App** is a simple, interactive counter application built with React. It allows users to increment, decrement, and reset a counter value. This project demonstrates the use of React hooks (useState) for managing state and showcases fundamental concepts of React component design and event handling.
 
-## 🔗 [Live Demo]()
+## 🔗 [Live Demo](https://react-counter-coral.vercel.app/)
 
-Check out the **React Counter App** application live by visiting the [live demo]().
+Check out the **React Counter App** application live by visiting the [live demo](https://react-counter-coral.vercel.app/).
 
 ## Tech Stack
 - **React**: A JavaScript library for building user interfaces.
