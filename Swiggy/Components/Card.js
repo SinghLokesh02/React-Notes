@@ -1,12 +1,13 @@
 import { CDN_LINK } from "../utils/constant";
 const Card = (props) => {
+  let {cloudinaryImageId,name,avgRating,cuisines,areaName,sla} = props.resData.info;
     return (
       <div className="card">
-        <img src={CDN_LINK + props.resData.info.cloudinaryImageId} alt="logo" className='card-img' />
-        <h2>{props.resData.info.name}</h2>
-        <p>{props.resData.info.avgRating} .  {props.resData.info.sla.slaString}</p>
-        <p>{props.resData.info.cuisines}</p>
-        <p>{props.resData.info.areaName}</p>
+        <img src={CDN_LINK +  cloudinaryImageId} alt="logo" className='card-img' />
+        <h2>{name}</h2>
+        <p>{avgRating} .  {sla.slaString}</p>
+        <p>{cuisines}</p>
+        <p>{areaName}</p>
       </div>
     )
   }

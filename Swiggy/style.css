@@ -120,8 +120,24 @@ p {
 }
 input[type="text"]{
   height: 30px;
-  width: 30%;
+  width: 20%;
   border: none;
   padding: 10px;
   border-radius: 5px;
+}
+
+select{
+  height: 30px;
+  width: 20%;
+  border: none;
+  padding: 0px 10px;
+  border-radius: 5px;
+}
+
+.btn-login{
+  font-size: 16px;
+  padding: 0px 15px;
+  border: none;
+  background:none;
+  color: white;
 }
