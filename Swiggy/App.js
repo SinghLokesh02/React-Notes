@@ -2,11 +2,18 @@ import React from "react";
 import "./style.css";
 import Navbar from "./Components/Navbar";
 import Card from "./Components/Card";
+import Banner from "./Components/Banner";
 import { useState, useEffect } from "react";
 
 // Swiggy card component
 const App = () => {
   const [resData, setResData] = useState([]);
+  const [resDataTitle, setResDataTitle] = useState([]);
+  const [resData4, setResData4] = useState([]);
+  const [resData4Title, setResData4Title] = useState([]);
+  // For banner
+  const [resData0, setResData0] = useState([]);
+  const [resData0Title, setResData0Title] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -17,8 +24,27 @@ const App = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=27.6093912&lng=75.1397935&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     let json = await data.json();
+    // Data 0
+    setResData0Title(
+      json.data.cards[0].card.card.header.title
+    );
+    setResData0(
+      json.data.cards[0].card.card.gridElements.infoWithStyle.info
+    );
+    // Data 1
     setResData(
       json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+    );
+    setResDataTitle(
+      json.data.cards[1].card.card.header.title
+    );
+
+    // Data 4
+    setResData4(
+      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+    );
+    setResData4Title(
+      json.data.cards[2].card.card.title
     );
   };
 
@@ -78,12 +104,27 @@ const App = () => {
         }} />
       </div>
 
+      <div className="main">
+      <h1>{resData0Title}</h1>
+      <div className="banner-container">
+        {resData0.map((res) => {
+          return <Banner resData={res} key={res.id} />;
+        })}
+      </div>
+      <h1>{resDataTitle}</h1>
       <div className="card-container">
         {resData.map((res) => {
           return <Card resData={res} key={res.info.id} />;
         })}
       </div>
+      <h1>{resData4Title}</h1>
+      <div className="card-container">
+        {resData4.map((res) => {
+          return <Card resData={res} key={res.info.id} />;
+        })}
+      </div>
     </div>
+      </div>
   );
 };
 
