@@ -1,9 +1,14 @@
 import React from "react";
 import "./style.css";
 import Navbar from "./Components/Navbar";
-import Card from "./Components/Card";
-import Banner from "./Components/Banner";
 import { useState, useEffect } from "react";
+import Shimmer from "./Components/Shimmer";
+import FilterSearch from "./Components/FilterSearch";
+import Body from "./Components/Body";
+import About from "./Components/About";
+import Contact from "./Components/Contact";
+import { BrowserRouter, Routes, Route } from "react-router";
+import ErrorPage from "./Components/ErrorPage";
 
 // Swiggy card component
 const App = () => {
@@ -25,27 +30,19 @@ const App = () => {
     );
     let json = await data.json();
     // Data 0
-    setResData0Title(
-      json.data.cards[0].card.card.header.title
-    );
-    setResData0(
-      json.data.cards[0].card.card.gridElements.infoWithStyle.info
-    );
+    setResData0Title(json.data.cards[0].card.card.header.title);
+    setResData0(json.data.cards[0].card.card.gridElements.infoWithStyle.info);
     // Data 1
     setResData(
       json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
-    setResDataTitle(
-      json.data.cards[1].card.card.header.title
-    );
+    setResDataTitle(json.data.cards[1].card.card.header.title);
 
     // Data 4
     setResData4(
       json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
     );
-    setResData4Title(
-      json.data.cards[2].card.card.title
-    );
+    setResData4Title(json.data.cards[2].card.card.title);
   };
 
   // Filter data
@@ -54,77 +51,79 @@ const App = () => {
     setResData(filteredList);
   }
 
+  // Search Data
+  let searchData = (e) => {
+    if (e.target.value === "") {
+      setResData(resData);
+      return;
+    }
+    let searchData = resData.filter((element) =>
+      element.info.name.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setResData(searchData);
+  };
+
   // Sort Data
-  function SortData(e){
+  function SortData(e) {
     let copyOfRestaurant = [...resData];
-    if(e.target.value === "sortByRating"){
-      copyOfRestaurant.sort((a,b) =>  a.info.avgRating - b.info.avgRating)
-      setResData(copyOfRestaurant)
+    if (e.target.value === "sortByRating") {
+      copyOfRestaurant.sort((a, b) => a.info.avgRating - b.info.avgRating);
+      setResData(copyOfRestaurant);
     }
-    if(e.target.value === "sortByFoodName"){
-      copyOfRestaurant.sort((a,b)=> {
-        if(a.info.name > b.info.name)return 1;
+    if (e.target.value === "sortByFoodName") {
+      copyOfRestaurant.sort((a, b) => {
+        if (a.info.name > b.info.name) return 1;
         return -1;
-      })
-      setResData(copyOfRestaurant)
+      });
+      setResData(copyOfRestaurant);
     }
-    if(e.target.value === "sortByNearest"){
-      copyOfRestaurant.sort((a,b)=>{
-        let A = a.info.sla.slaString.slice(0,2);
-        let B = b.info.sla.slaString.slice(0,2);
+    if (e.target.value === "sortByNearest") {
+      copyOfRestaurant.sort((a, b) => {
+        let A = a.info.sla.slaString.slice(0, 2);
+        let B = b.info.sla.slaString.slice(0, 2);
         return A - B;
-      })
-      setResData(copyOfRestaurant)
+      });
+      setResData(copyOfRestaurant);
     }
-     
   }
-  return (
+  return resData.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div>
-      <Navbar />
+      {/* <Navbar />
+      <FilterSearch
+        filterData={filterData}
+        SortData={SortData}
+        searchData={searchData}
+      />
+      <Body
+        resData0Title={resData0Title}
+        resData0={resData0}
+        resDataTitle={resDataTitle}
+        resData={resData}
+        resData4Title={resData4Title}
+        resData4={resData4}
+      /> */}
 
-      <div className="filter-search">
-        <button className="top-restaurants" onClick={filterData}>
-          Top Rated Restaurant
-        </button>
-
-        <select name="" id="" onChange={SortData}>
-          <option disabled="disabled">Select</option>
-          <option value="sortByRating">Sort by Rating</option>
-          <option value="sortByNearest">Sort by Nearest</option>
-          <option value="sortByFoodName">Sort by Food Name</option>
-        </select>
-
-        <input type="text" placeholder="Search Restaurants" onInput={(e)=>{
-          if(e.target.value === ""){
-            setResData(resData);
-            return;
-          }
-          let searchData = resData.filter((element) => element.info.name.toLowerCase().includes(e.target.value.toLowerCase()))
-          setResData(searchData);
-        }} />
-      </div>
-
-      <div className="main">
-      <h1>{resData0Title}</h1>
-      <div className="banner-container">
-        {resData0.map((res) => {
-          return <Banner resData={res} key={res.id} />;
-        })}
-      </div>
-      <h1>{resDataTitle}</h1>
-      <div className="card-container">
-        {resData.map((res) => {
-          return <Card resData={res} key={res.info.id} />;
-        })}
-      </div>
-      <h1>{resData4Title}</h1>
-      <div className="card-container">
-        {resData4.map((res) => {
-          return <Card resData={res} key={res.info.id} />;
-        })}
-      </div>
+<BrowserRouter>
+  <Navbar />
+      <Routes>
+        <Route path="/" element={< Body
+        resData0Title={resData0Title}
+        resData0={resData0}
+        resDataTitle={resDataTitle}
+        resData={resData}
+        resData4Title={resData4Title}
+        resData4={resData4}
+        />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<ErrorPage />} />
+ 
+        
+      </Routes>
+    </BrowserRouter>
     </div>
-      </div>
   );
 };
 

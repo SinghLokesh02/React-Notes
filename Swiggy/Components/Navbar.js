@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { LOGO } from "../utils/constant";
+import { Link } from "react-router";
 const Navbar = () =>{
 
   let [data,setData] = useState("Login")
@@ -12,9 +13,15 @@ const Navbar = () =>{
       <nav>
         <img src= {LOGO} alt="logo" />
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li>
+            <Link to="/">Home</Link>
+            </li>
+          <li>
+          <Link to="/about">About</Link>
+          </li>
+          <li>
+          <Link to="/contact">Contact</Link>
+            </li>
           <button onClick={changeState} className="btn-login">{data} </button>
 
         </ul>
