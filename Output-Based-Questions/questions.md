@@ -286,3 +286,72 @@ const y = 1;
 
 console.log(x == y, x === y);
 ```
+
+34. **What is the output of the following code?**
+    ```javascript
+    x = 10;
+    console.log(x);
+    var x;
+    ```
+
+35. **What is the output of the following code?**
+    ```javascript
+    let a = 10;
+    if (true) {
+       let a = 20;
+       console.log(a, "inside");
+    }
+    console.log(a, "outside");
+    ```
+
+36. **What is the output of the following code?**
+    ```javascript
+    const obj = {
+        a: "foo",
+        b: function () {
+          console.log(this.a);
+        },
+      };
+
+      const c = obj.b;
+
+      obj.b();
+      c();
+    ```
+
+37. **What is the output of the following code?**
+    ```javascript
+    const add = (a = 1, b = 2) => a + b;
+    console.log(add());
+    console.log(add(5));
+    console.log(add(undefined, 10));
+    ```
+
+38. **What is the output of the following code?**
+    ```javascript
+    const name = "John";
+    const age = 25;
+
+    const user = { name, age };
+    console.log(user);
+    ```
+
+39. **What is the output of the following code?**
+    ```javascript
+    console.log(typeof null);
+    console.log(typeof undefined);
+    console.log(null === undefined);
+    console.log(null == undefined);
+    ```
+
+40. **What is the output of the following code?**
+    ```javascript
+    const companies = [
+        { id: "1", name: "Facebook" },
+        { id: "2", name: "Apple" },
+        { id: "3", name: "Google" },
+      ];
+
+      companies.sort((a, b) => (a.name > b.name ? -1 : 1));
+      console.log(companies);
+    ```
