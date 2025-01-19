@@ -8,13 +8,14 @@ import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
 import User from './Components/User'
 import ErrorPage from './Components/ErrorPage'
+import BootNavbar from './Components/BootNavbar'
 
 function App() {
 
   return (
     <>
         <Router>
-          <Navbar/>
+          <BootNavbar/>
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/about" element={<About />} />
