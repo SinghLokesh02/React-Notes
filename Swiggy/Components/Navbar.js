@@ -12,7 +12,7 @@ const Navbar = () =>{
     return (
       <nav>
         <img src= {LOGO} alt="logo" />
-        <ul>
+        <ul className="nav">
           <li>
             <Link to="/">Home</Link>
             </li>

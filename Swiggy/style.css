@@ -5,7 +5,7 @@
 }
 
 nav,
-ul {
+ul.nav {
   background-color: black;
   display: flex;
   justify-content: space-between;

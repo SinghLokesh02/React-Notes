@@ -9,6 +9,7 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import { BrowserRouter, Routes, Route } from "react-router";
 import ErrorPage from "./Components/ErrorPage";
+import RestaurantMenu from "./Components/RestaurantMenu";
 
 // Swiggy card component
 const App = () => {
@@ -26,23 +27,25 @@ const App = () => {
 
   let fetchData = async () => {
     let data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=27.6093912&lng=75.1397935&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     let json = await data.json();
     // Data 0
-    setResData0Title(json.data.cards[0].card.card.header.title);
-    setResData0(json.data.cards[0].card.card.gridElements.infoWithStyle.info);
+    setResData0Title(json?.data?.cards[0]?.card?.card?.header?.title);
+    setResData0(
+      json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info
+    );
     // Data 1
     setResData(
-      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setResDataTitle(json.data.cards[1].card.card.header.title);
+    setResDataTitle(json?.data?.cards[1]?.card?.card?.header?.title);
 
     // Data 4
     setResData4(
-      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setResData4Title(json.data.cards[2].card.card.title);
+    setResData4Title(json?.data?.cards[2]?.card?.card?.title);
   };
 
   // Filter data
@@ -105,24 +108,28 @@ const App = () => {
         resData4={resData4}
       /> */}
 
-<BrowserRouter>
-  <Navbar />
-      <Routes>
-        <Route path="/" element={< Body
-        resData0Title={resData0Title}
-        resData0={resData0}
-        resDataTitle={resDataTitle}
-        resData={resData}
-        resData4Title={resData4Title}
-        resData4={resData4}
-        />} />
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Body
+                resData0Title={resData0Title}
+                resData0={resData0}
+                resDataTitle={resDataTitle}
+                resData={resData}
+                resData4Title={resData4Title}
+                resData4={resData4}
+              />
+            }
+          />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/restaurant/:resId" element={<RestaurantMenu />} />
           <Route path="*" element={<ErrorPage />} />
- 
-        
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };
