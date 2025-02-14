@@ -1,13 +1,31 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase/firebaseConfig';
+import { validateEmailAndPassword } from '../firebase/validate';
 const SignUp = () => {
     const [user,setUser] = useState({email: '', password: '',name: ''});
+    const [error, setError] = useState(null);
 
    
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitted Data:', user);
+    const validate = validateEmailAndPassword(user.email,user.password,user.name);
+    if(validate != null) {
+      setError(validate);
+      return;
+    }
+    createUserWithEmailAndPassword(auth,user.email,user.password)
+    .then((userCredential) => {
+      // Signed up 
+      const user = userCredential.user;
+      alert("User Created Successfully");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    });
   };
 
   return (
@@ -50,6 +68,7 @@ const SignUp = () => {
         <button type="submit" className="btn">Sign Up</button>
       </form>
       <p>Already have an account? <Link to="/signin">Sign In</Link></p>
+      {error && <p className='error'>{error}</p>}
     </div>
   );
 };
