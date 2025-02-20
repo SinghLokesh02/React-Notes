@@ -10,6 +10,7 @@ import Contact from "./Components/Contact";
 import { BrowserRouter, Routes, Route } from "react-router";
 import ErrorPage from "./Components/ErrorPage";
 import RestaurantMenu from "./Components/RestaurantMenu";
+import CartPage from "./Components/CartPage";
 
 // Swiggy card component
 const App = () => {
@@ -126,6 +127,7 @@ const App = () => {
           />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="/restaurant/:resId" element={<RestaurantMenu />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

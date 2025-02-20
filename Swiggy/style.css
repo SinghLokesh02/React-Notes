@@ -283,3 +283,100 @@ select{
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+/* Restaurant Menu Styling */
+
+/* Global styles */
+.menu-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Restaurant info */
+.restaurant-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.restaurant-name {
+  font-size: 28px;
+  color: #333;
+}
+
+.restaurant-cost,
+.restaurant-sla,
+.restaurant-cuisines {
+  font-size: 16px;
+  color: #555;
+  margin: 5px 0;
+}
+
+/* Menu heading */
+.menu-heading {
+  font-size: 24px;
+  color: #222;
+  margin-top: 20px;
+  text-align: center;
+  border-bottom: 2px solid #ff9800;
+  padding-bottom: 5px;
+}
+
+/* Menu items */
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+}
+
+.menu-item {
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+  transform: scale(1.02);
+}
+
+.item-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.item-description {
+  font-size: 14px;
+  color: #777;
+  margin: 5px 0;
+}
+
+.item-price {
+  font-size: 16px;
+  color: #444;
+  font-weight: bold;
+}
+
+/* Add to Cart button */
+.add-to-cart {
+  background: #ff9800;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.add-to-cart:hover {
+  background: #e68900;
+}
+
+ 

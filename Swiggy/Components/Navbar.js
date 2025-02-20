@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { LOGO } from "../utils/constant";
 import { Link } from "react-router";
+import { useSelector } from "react-redux";
 const Navbar = () =>{
+  // Subscribing to the store
+  const cartItems = useSelector((store)=> store.cart.items);
+  console.log(cartItems);
+  
 
   let [data,setData] = useState("Login")
 
@@ -23,6 +28,7 @@ const Navbar = () =>{
           <Link to="/contact">Contact</Link>
             </li>
           <button onClick={changeState} className="btn-login">{data} </button>
+          <Link className="btn-login" to="/cart">Cart ({cartItems.length})</Link>
 
         </ul>
       </nav>

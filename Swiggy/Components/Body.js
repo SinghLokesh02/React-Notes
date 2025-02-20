@@ -15,8 +15,6 @@ const Body = ({resData0,resData0Title,resData4,resData4Title,resData,resDataTitl
     <h1>{resDataTitle}</h1>
     <div className="card-container">
       {resData.map((res) => {
-        {console.log(res);
-        }
         return <Link to={"/restaurant/" + res.info.id} key={res.info.id}> <Card resData={res} /> </Link>;
       })}
     </div>
